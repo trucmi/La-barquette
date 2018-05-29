@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+    <body>
+        {% block body %}
+
+        <ul>
+        {% for post in post %}
+            <li>{{ post.title }}</li>
+            <li><img src="{{ vich_uploader_asset(post, 'imgFile') }}"/></li>
+            <li>{{ post.body | raw }}</li>
+        {% endfor %}
+        </ul>
+        {%  endblock %}
+    </body>
+
+</html>

@@ -1,0 +1,10 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        post_img:
+            uri_prefix: '%app.path.post_img%'
+            upload_destination: '%kernel.root_dir%/../public/uploads/img/post'
+
+parameters:
+    app.path.post_img: uploads/img/post

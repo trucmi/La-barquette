@@ -1,0 +1,66 @@
+easy_admin:
+    formats:
+        date:     'd/m/Y'
+        time:     'H:i'
+        datetime: 'd/m/Y H:i:s'
+    design:
+        brand_color: '#F73F52'
+    entities:
+        User:
+            class: App\Entity\User
+            controller: App\Controller\PasswordController
+            export_path: '%kernel.root_dir/../var/export/user'
+            password_encoding: { algorithm: 'bcrypt', cost: 12 }
+            label: 'USER'
+            list:
+                title: "%%entity_label%% List"
+                fields:
+                    - 'id'
+                    - { property: 'email', label: 'Email' }
+                    - { property: 'username', label: 'Username' }
+                    - { property: 'debts', label: 'Debts' }
+                    - { property: 'receivables', label: 'Receivables' }
+                    - { property: 'isActive', label: 'Active', type: 'boolean' }
+                    - { property: 'isAdmin', label: 'Admin', type: 'boolean' }
+            form:
+                fields:
+                - { property: 'email', type: 'email', label: 'Email' }
+                - { property: 'username', label: 'Username' }
+                - { property: 'plainPassword', label: 'Password' }
+                - { property: 'isActive', label: 'Active' }
+                - { property: 'isAdmin', label: 'Admin' }
+        Debt:
+            class: App\Entity\Debt
+            label: 'DEBT'
+            list:
+                title: "%%entity_label%% List"
+                fields:
+                    - 'id'
+                    - { property: 'giver', label: 'Giver' }
+                    - { property: 'receiver', label: 'Receiver' }
+                    - { property: 'nameDebtType', label: 'DebtType' }
+                    - { property: 'debtDeadline', label: 'Deadline' }
+                    - 'date'
+            form:
+                fields:
+                    - { property: 'giver', label: 'Giver' }
+                    - { property: 'receiver', label: 'Receiver' }
+                    - { property: 'nameDebtType', label: 'DebtType' }
+                    - { property: 'debtDeadline', label: 'Deadline' }
+        Post:
+            class: App\Entity\Post
+            label: 'POST'
+            list:
+                title: "%%entity_label%% List"
+                fields:
+                    - 'id'
+                    - { property: 'title', label: 'Title' }
+                    - { property: 'isPublished', label: 'Published', type: 'boolean' }
+                    - { property: 'post_img', label: 'img', type: 'image', base_path: '%app.path.post_img%' }
+                    - { property: 'updatedAt', label: 'UpdateTime' }
+            form:
+                fields:
+                    - { property: 'title', label: 'Title' }
+                    - { property: 'body', label: 'Description', type: 'ckeditor' }
+                    - { property: 'imgFile', label: 'img', type: 'vich_image' }
+                    - { property: 'isPublished', label: 'Published' }
